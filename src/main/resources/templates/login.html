@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+    <h1>로그인하자!!!!</h1>
+
+    <div th:if="${error}">
+        로그인에 실패했습니다. 로그인 네임, 패스워드를 확인하세요
+    </div>
+
+    <!--시큐리티 default값 주의사항
+        * POST요청 + /login경로로 스프링 시큐리티는 로그인을 요청을 받고, 처리한다
+        * 사용자이름=username, 비밀번호=password 명칭으로 값을 받는다
+            단, 변수명을 지정해서 변경하고 싶다면 가능하다 -> SecurityConfiguration.java에서 확인가능하다.
+    -->
+    <form method="post" th:action="@{/login}" id="loginForm">
+        <label>Username: </label>
+        <input type="text" name="login-id"/><!--default :: name="username"-->
+        <label>Password: </label>
+        <input type="password" name="pwd"/><!--default :: name="password"-->
+
+        <input type="submit" value="Login"/>
+    </form>
+
+</body>
+</html>
